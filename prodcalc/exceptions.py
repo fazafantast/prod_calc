@@ -1,0 +1,3 @@
+
+class ProdCalcException(Exception):
+    pass
