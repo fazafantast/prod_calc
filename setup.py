@@ -1,6 +1,4 @@
 import setuptools
-from os.path import join, dirname
-import prodcalc
 
 
 with open("README.md", "r") as fh:
@@ -8,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="prodcalc",
-    version=prodcalc.__version__,
+    version="0.1b",
     packages=setuptools.find_packages(),
     description="Производственный календарь РФ",
     long_description=long_description,
@@ -26,4 +24,5 @@ setuptools.setup(
                  "Programming Language :: Python :: 3.6",
                  "Topic :: Utilities"],
     python_requires=">=3.6",
+    package_data={"prodcalc": ["data/prod_calc.csv"]},
 )

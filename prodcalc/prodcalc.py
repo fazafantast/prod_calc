@@ -1,8 +1,14 @@
 import csv
 import re
 import datetime
+import pkg_resources
 
 from .exceptions import ProdCalcException
+
+
+__all__ = ["prodcalc"]
+
+DB_FILE = pkg_resources.resource_filename('prodcalc', 'data/prod_calc.csv')
 
 
 class ProdCalc:
@@ -13,7 +19,7 @@ class ProdCalc:
         try:
             # Данные хранящиеся в `prod_calc.csv`, взяты с сайта открытых данных России:
             # https://data.gov.ru/opendata/7708660670-proizvcalendar
-            with open('./prodcalc/data/prod_calc.csv', newline='') as f:
+            with open(DB_FILE, newline='') as f:
                 fieldnames = ['year'] + _months
                 reader = csv.DictReader(f, delimiter=',', quotechar='"', fieldnames=fieldnames)
                 self.__data = {}
@@ -26,8 +32,6 @@ class ProdCalc:
                         for day in days:
                             _day = int(re.sub('\D', '', day))
                             self.__data[year][month].append(_day)
-                    # print(type(row), row['year'], row)
-            print(self.__data)
         except OSError:
             raise Exception('Библиотека повреждена, отсутствуют инициализационные данные')
 
@@ -54,4 +58,3 @@ class ProdCalc:
             date = date - datetime.timedelta(days=1)
             if self.is_working_day(date):
                 return date
-
