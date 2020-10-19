@@ -1,5 +1,5 @@
-from .prodcalc import ProdCalc
+from .calc import Calc
 from .exceptions import ProdCalcException
 
 
-qprodcalc = ProdCalc()
+prodcalc = Calc()

@@ -6,12 +6,10 @@ import pkg_resources
 from .exceptions import ProdCalcException
 
 
-__all__ = ["prodcalc"]
-
-DB_FILE = pkg_resources.resource_filename('prodcalc', 'data/prod_calc.csv')
+_DB_FILE = pkg_resources.resource_filename('prodcalc', 'data/prod_calc.csv')
 
 
-class ProdCalc:
+class Calc:
     __data = None
 
     def __init__(self):
@@ -19,7 +17,7 @@ class ProdCalc:
         try:
             # Данные хранящиеся в `prod_calc.csv`, взяты с сайта открытых данных России:
             # https://data.gov.ru/opendata/7708660670-proizvcalendar
-            with open(DB_FILE, newline='') as f:
+            with open(_DB_FILE, newline='') as f:
                 fieldnames = ['year'] + _months
                 reader = csv.DictReader(f, delimiter=',', quotechar='"', fieldnames=fieldnames)
                 self.__data = {}

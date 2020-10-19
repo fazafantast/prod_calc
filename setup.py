@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="prodcalc",
-    version="0.1b",
+    version="0.2b",
     packages=setuptools.find_packages(),
     description="Производственный календарь РФ",
     long_description=long_description,
